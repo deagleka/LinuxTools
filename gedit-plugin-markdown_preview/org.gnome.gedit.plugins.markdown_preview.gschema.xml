@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema id="org.gnome.gedit.plugins.markdown_preview"
+    path="/org/gnome/gedit/plugins/markdown_preview/">
+
+    <!-- General options -->
+    <key type="s" name="position">
+      <default>'side'</default>
+      <summary>The position of the preview within the window</summary>
+      <description>Can be 'side', 'bottom', or 'auto'.</description>
+    </key>
+    <key type="b" name="relative">
+      <default>false</default>
+      <summary>Use relative paths</summary>
+      <description>Enable relative paths for links and pictures</description>
+    </key>
+    <key type="b" name="tex-files">
+      <default>false</default>
+      <summary>Render .tex files</summary>
+      <description>Try to render .tex files if pandoc is installed.</description>
+    </key>
+    <key type="b" name="auto-manage-pane">
+      <default>true</default>
+      <summary>Show/hide pane automatically</summary>
+      <description>
+        If true, the pane will be shown automatically when there is something to
+        preview, and hidden automatically otherwise if no other plugin is active
+        in that pane.
+      </description>
+    </key>
+    <key type="b" name="auto-reload">
+      <default>false</default>
+      <summary>Automatically reload the preview</summary>
+      <description></description>
+    </key>
+
+    <!-- CSS options -->
+    <key type="b" name="use-style">
+      <default>false</default>
+      <summary>Use a stylesheet</summary>
+      <description></description>
+    </key>
+    <key type="s" name="style">
+      <default>''</default>
+      <summary>Stylesheet URI</summary>
+      <description></description>
+    </key>
+
+    <!-- RevealJs options -->
+    <key type="s" name="revealjs-theme">
+      <default>'black'</default>
+      <summary>Name of the revealjs theme</summary>
+      <description>Values can be </description>
+    </key>
+    <key type="s" name="revealjs-transitions">
+      <default>'none'</default>
+      <summary>Type of transitions</summary>
+      <description>Values can be </description>
+    </key>
+    <key type="b" name="revealjs-slide-num">
+      <default>true</default>
+      <summary>Display slide numbers</summary>
+      <description></description>
+    </key>
+
+    <!-- Rendering options -->
+    <key type="s" name="backend">
+      <default>'python'</default>
+      <summary>Favorite backend for the preview</summary>
+      <description>Can be 'python' or 'pandoc'</description>
+    </key>
+    <key type="s" name="custom-export">
+      <default>''</default>
+      <summary>Custom export command</summary>
+      <description></description>
+    </key>
+    <key type="s" name="custom-render">
+      <default>''</default>
+      <summary>Custom rendering command</summary>
+      <description></description>
+    </key>
+    <key type="as" name="pandoc-command">
+      <default>['pandoc', '-s', '$INPUT_FILE', '--metadata', 'pagetitle=Preview']</default>
+      <summary>Pandoc rendering command line</summary>
+      <description>
+        The command line used for pandoc rendering. It has to return HTML code
+        instead of writing it in a file! '$INPUT_FILE' will be replaced in the
+        code by an appropriate value, it's "mandatory".
+      </description>
+    </key>
+    <key type="as" name="extensions">
+      <default>['extra', 'sane_lists', 'toc']</default>
+      <summary>Enabled extensions</summary>
+      <description>List of enabled extensions for python3-markdown</description>
+    </key>
+  </schema>
+
+  <schema id="org.gnome.gedit.plugins.markdown_preview.keybindings"
+    path="/org/gnome/gedit/plugins/markdown_preview/keybindings/">
+
+    <key name="italic" type="as">
+      <default><![CDATA[['<Primary>slash']]]></default>
+      <summary>Add italic markup</summary>
+      <description></description>
+    </key>
+    <key name="bold" type="as">
+      <default><![CDATA[['<Primary><Shift>B']]]></default>
+      <summary>Add bold markup</summary>
+      <description></description>
+    </key>
+    <key name="insert-picture" type="as">
+      <default><![CDATA[['<Primary><Shift>P']]]></default>
+      <summary>Insert an image</summary>
+      <description></description>
+    </key>
+    <key name="title-lower" type="as">
+      <default><![CDATA[['<Primary>minus']]]></default>
+      <summary>Lower the level of title</summary>
+      <description>Use a lower level of title by adding a "#" tag</description>
+    </key>
+    <key name="title-upper" type="as">
+      <default><![CDATA[['<Primary>plus']]]></default>
+      <summary>Rise the level of title</summary>
+      <description>Use an upper level of title by removing a "#" tag</description>
+    </key>
+  </schema>
+</schemalist>
+
+

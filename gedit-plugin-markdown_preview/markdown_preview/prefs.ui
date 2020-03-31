@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface domain="gedit-plugin-markdown-preview">
+  <object class="GtkStack" id="stack">
+    <property name="margin">10</property>
+    <property name="visible">True</property>
+    <property name="transition-type">slide-up-down</property>
+
+    <child>
+      <object class="GtkBox" id="general_box">
+        <property name="spacing">16</property>
+        <property name="orientation">vertical</property>
+
+        <child>
+          <object class="GtkBox">
+            <property name="orientation">horizontal</property>
+            <property name="spacing">16</property>
+            <child>
+              <object class="GtkLabel">
+                <property name="label" translatable="yes">Preview position</property>
+              </object>
+              <packing>
+                <property name="pack-type">start</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkComboBoxText" id="positionCombobox"></object>
+              <packing>
+                <property name="pack-type">end</property>
+              </packing>
+            </child>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkBox">
+            <property name="orientation">horizontal</property>
+            <property name="spacing">16</property>
+            <child>
+              <object class="GtkLabel">
+                <property name="label" translatable="yes">Automatically show/hide panel</property>
+              </object>
+              <packing>
+                <property name="pack-type">start</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSwitch" id="autoManageSwitch"></object>
+              <packing>
+                <property name="pack-type">end</property>
+              </packing>
+            </child>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkSeparator" />
+        </child>
+
+        <child>
+          <object class="GtkBox">
+            <property name="orientation">horizontal</property>
+            <property name="spacing">16</property>
+            <child>
+              <object class="GtkLabel">
+                <property name="label" translatable="yes">Use relative paths</property>
+              </object>
+              <packing>
+                <property name="pack-type">start</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSwitch" id="relative_paths_switch"></object>
+              <packing>
+                <property name="pack-type">end</property>
+              </packing>
+            </child>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkSeparator" />
+        </child>
+
+        <child>
+          <object class="GtkBox">
+            <property name="orientation">horizontal</property>
+            <property name="spacing">16</property>
+            <child>
+              <object class="GtkLabel">
+                <property name="label" translatable="yes">Preview .tex files (pandoc only)</property>
+              </object>
+              <packing>
+                <property name="pack-type">start</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSwitch" id="tex_files_switch"></object>
+              <packing>
+                <property name="pack-type">end</property>
+              </packing>
+            </child>
+          </object>
+        </child>
+
+      </object>
+      <packing>
+        <property name="name">general_page</property>
+        <property name="title" translatable="yes">General options</property>
+      </packing>
+    </child>
+
+    <child>
+      <object class="GtkBox" id="backend_box">
+        <property name="spacing">16</property>
+        <property name="orientation">vertical</property>
+      </object>
+      <packing>
+        <property name="name">backend_page</property>
+        <property name="title" translatable="yes">Backend</property>
+      </packing>
+    </child>
+
+    <child>
+      <object class="GtkBox" id="style_box">
+        <property name="spacing">16</property>
+        <property name="orientation">vertical</property>
+      </object>
+      <packing>
+        <property name="name">style_page</property>
+        <property name="title" translatable="yes">Style</property>
+      </packing>
+    </child>
+
+    <child>
+      <object class="GtkBox" id="shortcuts_page">
+        <property name="spacing">16</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkLabel">
+            <property name="label" translatable="yes">Double-click on a shortcut to edit it.</property>
+            <property name="halign">start</property>
+            <style><class name="dim-label"/></style>
+          </object>
+        </child>
+        <child>
+          <object class="GtkFrame">
+            <property name="visible">True</property>
+            <child>
+              <object class="GtkTreeView" id="shortcuts_treeview">
+                <property name="headers-visible">True</property>
+                <property name="search-column">1</property>
+                <property name="model">list_store</property>
+                <child>
+                  <object class="GtkTreeViewColumn">
+                    <property name="title" translatable="yes">Description</property>
+                    <property name="expand">True</property>
+                    <child>
+                      <object class="GtkCellRendererText"/>
+                      <attributes>
+                        <attribute name="text">1</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkTreeViewColumn">
+                    <property name="title" translatable="yes">Shortcut</property>
+                    <child>
+                      <object class="GtkCellRendererAccel" id="accel_renderer">
+                        <property name="editable">True</property>
+                        <property name="accel-mode">gtk</property>
+                      </object>
+                      <attributes>
+                        <attribute name="accel-key">2</attribute>
+                        <attribute name="accel-mods">3</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="name">shortcuts_page</property>
+        <property name="title" translatable="yes">Shortcuts</property>
+      </packing>
+    </child>
+  </object>
+
+  <object class="GtkListStore" id="list_store">
+    <columns>
+      <column type="gchararray"/>
+      <column type="gchararray"/>
+      <column type="gint"/>
+      <column type="gint"/>
+    </columns>
+    <data>
+<!--      <row>-->
+<!--        <col id="0">setting_id</col>-->
+<!--        <col id="1">Displayed description</col>-->
+<!--        <col id="2">0</col>-->
+<!--        <col id="3">0</col>-->
+<!--      </row>-->
+    </data>
+  </object>
+
+</interface>
+
