@@ -118,9 +118,9 @@ This file content in: GS60_FanProfiles
 Launch 3 options:
 
 ``
-sudo phyton controlfan.py Quiet.rw
+sudo python controlfan.py Quiet.rw
 ``
- 
+
 ``
 sudo /usr/bin/python ./controlfan.py Quiet.rw
 ``
